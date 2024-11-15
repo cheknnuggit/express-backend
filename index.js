@@ -18,13 +18,14 @@ app.get("/todos", (req, res) => {
 
 app.post("/todos", (req, res) => {
   const title = req.body.title;
-  if(!title) return res.status(400).send({message: "title is not found" });
+  if(!title) return res.status(400).send({ message: "title is not found" });
   const newTodo = {
     id : todos[todos.length - 1].id + 1,
     title: title,
     checked: false,
-    
   };
+  todos.push(newTodo);
+  return res.send(newTodo);
 });
 
 app.listen(PORT, () => {
